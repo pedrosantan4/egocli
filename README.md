@@ -1,153 +1,103 @@
-```markdown
-# 🚀 EgoCLI
+# egocli 🦫📦🍵
 
-> **AWS Infrastructure Management CLI**
-
-EgoCLI é um poderoso terminal TUI, construído em **Go**, que simplifica a criação de infraestrutura AWS com apenas alguns comandos. Utilize **Cobra** para o gerenciamento de comandos e **Bubble Tea** para uma experiência interativa, exibindo métricas em tempo real e fornecendo produtividade máxima.
+**egocli** é um terminal interativo, modular e extensível escrito em **Go** 🦫, utilizando os frameworks **Cobra** 📦 e **Bubble Tea** 🍵. Este projeto visa fomentar a automação, padronização e produtividade na criação de comandos que geram rapidamente snippets de infraestrutura como código (IaC) para módulos AWS, como IAM, EKS, S3, RDS e muitos outros.
 
 ---
 
-## 📌 Por que usar o EgoCLI?
+## ✨ Principais Recursos
 
-- **⏱️ Ganhe Tempo**: Gere instantaneamente *snippets* de módulos AWS (IAM, VPC, EKS, S3, RDS, Lambda, EC2, etc.) sem digitar manualmente dezenas de linhas.
-- **🔧 Menos Erros**: Templates validados reduzem erros de sintaxe e configuração.
-- **📊 Monitoramento Local**: Visualize **CPU**, **memória** e contagem de **goroutines** para entender o impacto de suas operações.
-- **🔄 Fluxo Imersivo**: Mantenha-se no terminal com suporte a histórico de comandos, edição inline e autoscroll.
-- **📈 Escalabilidade**: Fácil de estender com novos comandos e templates, seguindo **SOLID** e **KISS**.
-
----
-
-## 🏗️ Arquitetura Técnica
-
-1. **Go Modules & Cobra**
-   - Estrutura de comandos em `cmd/`, com `rootCmd`, `gen` e `new`.
-   - Registro de subcomandos e flags de forma declarativa.
-2. **Design Patterns**
-   - **Strategy**: Interface `Generator` para desacoplar lógica de geração.
-   - **Factory**: Mapeamento dinâmico de templates no `templates.go`.
-3. **Bubble Tea TUI**
-   - Modelo **MVU** (Model-View-Update) para loop de eventos.
-   - **Lip Gloss** para estilos, cores e layout responsivo.
-4. **Concorrência Segura**
-   - Uso de **goroutines** e **sync.WaitGroup** para IO paralelo.
-   - Mecanismo de captura de erros via canais.
-5. **Métricas & Estatísticas**
-   - `gopsutil` para coleta de CPU e memória.
-   - Métricas exibidas em tempo real, atualizadas a cada 1s.
-   - Estatísticas de duração e uso de memória para cada operação.
+- 🏗️ **Geração automática de snippets**: IAM, EKS, S3, RDS, EC2 e outros módulos AWS.
+- ⚡ **Interface interativa**: via **Bubble Tea** 🍵 com prompts dinâmicos.
+- 🧱 **Arquitetura modular**: novos comandos facilmente adicionáveis com **Cobra** 📦.
+- 📊 **Exibição de métricas locais**: CPU, Memória, Disco e Tempo de execução.
+- 🔄 **Evita repetição de código**: uso de constantes globais para mensagens e métricas.
+- ✅ **Padrões de código**: clean code, DRY (Don't Repeat Yourself), KISS (Keep It Simple, Stupid).
+- 🖥️ **Experiência CLI rica**: autocompletes, prompts, menus e navegação fluida.
+- 📦 **Templates prontos**: modulos AWS com parametrização rápida e segura.
+- 🌍 **Testes Multi-ambiente**: facilidade para gerar e validar código para ambientes `prod`, `homolog` e `dev`.
 
 ---
 
-## 📦 Estrutura de Diretórios
+## ⚙️ Tecnologias Utilizadas
 
-```
-
-egocli/
-├── cmd/             # Pacote de comandos
-│   ├── constants.go # Permissões, diretórios e mensagens padrão
-│   ├── gen.go       # Comando 'gen' e lógica de geração
-│   ├── new\.go       # Comando 'new' e criação de snippets
-│   ├── root.go      # Ponto de entrada Cobra
-│   ├── templates.go # Definição de ModuleTemplate e mapa de templates
-│   └── terminal.go  # Terminal interativo Bubble Tea
-├── main.go          # Inicialização da aplicação
-├── go.mod           # Módulo Go
-└── README.md        # Documentação do projeto
-
-````
+- **Go** 🦫 — linguagem robusta e rápida.
+- **Cobra** 📦 — criação de comandos CLI.
+- **Bubble Tea** 🍵 — interface TUI elegante e reativa.
+- **Viper** — gerenciamento de configurações.
+- **Go Templates** — geração dinâmica de arquivos e módulos.
+- **OS/Runtime Packages** — coleta de métricas do sistema.
 
 ---
 
-## ⚙️ Instalação
+## 🚀 Como pode ajudar desenvolvedores e equipes
+
+✅ **Agilidade** na criação de módulos e recursos AWS.  
+✅ **Padronização** no provisionamento de infraestrutura.  
+✅ **Evita erros manuais**: reduz a necessidade de escrever código repetitivo.  
+✅ **Integração rápida** com pipelines DevOps e GitOps.  
+✅ **Ambientes isolados**: facilita testes entre `prod` e `homolog`.  
+✅ **Métricas em tempo real**: saiba como está o seu terminal enquanto trabalha!
+
+---
+
+## 📦 Estrutura Técnica
+
+- `cmd/` — comandos do terminal organizados por módulo.
+- `internal/templates/` — templates Go para geração de módulos AWS.
+- `pkg/ui/` — componentes de interface usando Bubble Tea.
+- `pkg/metrics/` — coleta e exibição de métricas do sistema.
+- `constants.go` — mensagens e métricas centralizadas para evitar duplicações.
+- `moduleTemplate.go` — template engine global reutilizável.
+- `main.go` — ponto de entrada com inicialização da CLI Cobra.
+
+---
+
+## 🧭 Roadmap: Melhorias Futuras
+
+🔧 **Agente Healer**: monitoramento contínuo do terminal para detectar inconsistências ou erros, com autocorreção.  
+📊 **Observabilidade**: coleta avançada de métricas e logs, monitoramento de clusters/pods Kubernetes, com informações personalizadas.  
+🧠 **Integração com IA/LLMs**: para sugestões inteligentes de comandos, aprendizado de padrões de uso e melhoria no relacionamento entre Terminal e Desenvolvedor.  
+🌐 **Gerenciamento Multi-ambiente**: ampliar suporte e testes entre `prod`, `homolog`, `dev` e `staging` de forma segura e padronizada.  
+🔌 **Plugins**: arquitetura para que terceiros criem e integrem novos módulos.  
+📄 **Documentação interativa**: comandos com auto-ajuda detalhada e exemplos práticos.
+
+---
+
+## 📈 Métricas exibidas no terminal
+
+- 🔋 Uso de CPU.
+- 💾 Consumo de memória.
+- 🗄️ Espaço em disco.
+- ⏱️ Tempo de execução da aplicação.
+
+Tudo isso ajuda você a entender o impacto e saúde da sua máquina enquanto utiliza o terminal.
+
+---
+
+## 🧑‍💻 Padrões de Código Seguidos
+
+- ✅ Clean Code.
+- ✅ DRY (Don't Repeat Yourself).
+- ✅ KISS (Keep It Simple, Stupid).
+- ✅ Modularização.
+- ✅ Reutilização de templates e constantes globais.
+
+---
+
+## 🤝 Contribuindo
+
+1. Fork o repositório.
+2. Crie sua feature branch: `git checkout -b minha-feature`.
+3. Commit suas alterações: `git commit -m 'Minha nova feature'`.
+4. Push para a branch: `git push origin minha-feature`.
+5. Abra um Pull Request!
+
+---
+
+## 🛠️ Instalação e uso
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/egocli.git
+git clone https://github.com/seuusuario/egocli.git
 cd egocli
-
-# Compile o binário
-go build -o egocli main.go
-
-# (Opcional) Instale globalmente
-go install
-````
-
----
-
-## 🚀 Exemplos de Uso
-
-### Terminal Interativo
-
-```bash
-egocli terminal
-# Dentro do terminal:
-# → gen vpc
-# → new --lambda
-# → history, clear, exit
-```
-
-### CLI Tradicional
-
-```bash
-egocli gen eks   # Gera arquivos de configuração EKS
-egocli new --s3   # Cria snippet para bucket S3
-```
-
----
-
-## 📝 Lista de Comandos
-
-| Comando           | Descrição                                             |
-| ----------------- | ----------------------------------------------------- |
-| `gen vpc`         | Gera template Terraform de VPC                        |
-| `gen eks`         | Gera template Terraform de EKS                        |
-| `gen iam`         | Gera template de Roles IAM                            |
-| `gen s3`          | Gera template Terraform de S3                         |
-| `gen rds`         | Gera template Terraform de RDS                        |
-| `gen lambda`      | Gera template de função Lambda                        |
-| `gen ec2`         | Gera template Terraform de instância EC2              |
-| `new --<service>` | Cria snippet em `mySnippets/<service>`                |
-| `terminal`        | Inicia terminal interativo com métricas em tempo real |
-| `clear`           | Limpa a tela do terminal                              |
-| `exit` / `q`      | Sai do terminal interativo                            |
-
----
-
-## 📈 Benefícios para o Usuário
-
-* **Produtividade**: Corte de 80% no tempo de setup de infraestrutura.
-* **Consistência**: Configurações padronizadas em toda a equipe.
-* **Visibilidade**: Métricas e logs para diagnóstico rápido.
-* **Expansível**: Integração fácil com CI/CD e pipelines IaC.
-
----
-
-## 🤝 Contribuições
-
-1. Faça um fork deste repositório
-2. Crie uma branch (`git checkout -b feature/x`)
-3. Faça commit das suas alterações (`git commit -m 'Adiciona feature x'`)
-4. Envie para o repositório remoto (`git push origin feature/x`)
-5. Abra um Pull Request
-
----
-
-## 🔮 Roadmap & Futuras Melhorias
-
-A seguir algumas ideias e direções para tornar o EgoCLI ainda mais robusto e inteligente:
-
-* 🩺 **Agente Healer**: serviço autônomo que varre a infraestrutura gerada e corrige inconsistências ou erros de configuração automaticamente.
-* 📊 **Observabilidade Avançada**: integração com métricas de clusters/pods (Kubernetes), logs customizados e alertas em tempo real para monitorar a saúde dos recursos.
-* 🤖 **IA & LLM**: suporte a grandes modelos de linguagem para sugerir otimizações de infraestrutura, gerar descrições automáticas de recursos e tutoriais inline.
-* 🌐 **Testes Multi-Ambiente**: comandos específicos para simular e validar configurações em ambientes de homologação, staging e produção antes do deploy final.
-
----
-
-## 🛡️ Licença
-
-MIT © 2025
-
-MIT © 2025
-
-```
-```
+go build -o egocli
+./egocli
